@@ -1,0 +1,5 @@
+.vscode
+venv
+token.json
+.cache
+.DS_Store
