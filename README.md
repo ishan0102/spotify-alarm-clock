@@ -1,2 +1,2 @@
-# spotify-alarm-clock
-An alarm clock that uses music from your Spotify playlist
+# Spotify API Wrapper
+A Spotify API wrapper I wrote for personal use
