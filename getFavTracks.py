@@ -21,12 +21,20 @@ sp = spotipy.Spotify(client_credentials_manager=SpotifyOAuth(
                     client_id=CLIENT_ID, client_secret=CLIENT_SECRET,
                     redirect_uri=REDIRECT_URI, scope=scope))
 
-# Show playing devices with pretty formatting!
-device_list = sp.devices()
-pprint(device_list)
+pl_id = 'spotify:playlist:181rappNUEG26jD0aeYIi4'
+pl_id2 = 'spotify:playlist:37i9dQZF1ELZqgPLPo7ozJ'
+pl_id3 = 'spotify:playlist:0MtdOpFYr3BJtcAsme7gyJ'
+pl_id4 = 'spotify:playlist:5XHaTJ7PJWEiyvUcI8UbFZ'
+offset = 0
 
-# Transfer playback to Macbook if no song is playing
-sp.transfer_playback(device_id=MAC_ID, force_play=True)
-
-# Play a random song off of my playlist
-sp.start_playback(context_uri=data['playlist']['trap'])
+while True:
+    response = sp.playlist_items(pl_id4,
+                                 offset=offset,
+                                 fields='items.track.id, items.track.name, total',
+                                 additional_types=['track'])
+    
+    if len(response['items']) == 0:
+        break
+    
+    pprint(response['items'])
+    offset = offset + len(response['items'])
